@@ -1,0 +1,8 @@
+.searchBar{
+    display:block;
+    padding: 3px;
+    cursor: pointer;
+    height: 100%;
+    width: fit-content;
+    background:rgb(75, 73, 73);
+}

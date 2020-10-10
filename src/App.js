@@ -1,26 +1,96 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import {Switch, Route, Redirect, withRouter} from 'react-router-dom';
+// Components
+import  Layout from './components/Layout/Layout';
+import Auth from './containers/Auth/Auth';
+import Feed from './containers/Feed/Feed';
+import Fullpost from './containers/Fullpost/Fullpost';
+import MyProfile from './containers/MyProfile/MyProfile';
+import Account from './containers/Account/Account';
+import Following from './containers/Following/Following';
+import Followers from './containers/Followers/Followers';
+import EditProfile from './containers/EditProfile/EditProfile';
+import Logout from './containers/Auth/Logout/Logout';
+
+import AddPost from './containers/AddPost/AddPost';
+import FollowNew from './containers/FollowNew/FollowNew';
+import Explore from './containers/Explore/Explore';
+import Search from './containers/Search/Search';
+import {connect} from 'react-redux';
+import * as action from './store/actions/index';
+
+class  App extends React.Component {
+
+  componentDidMount(){
+    console.log(window.location);
+    this.props.tryAutoSignIn();
+  }
+
+  render(){
+    let routes = (
+      <Switch>
+
+        <Route path='/auth' exact component = {Auth}/>
+        <Redirect to ='/auth'/>
+
+      </Switch>
+    );
+
+    const {isAuth} = this.props;
+    if(isAuth) {
+      routes = (
+        <Switch>
+          <Route path="/new" component = {AddPost}/>
+          <Route path="/explore" component = {Explore} />
+          <Route path="/auth" component = {Auth} />
+          <Route path = "/logout" component = {Logout} />
+          <Route path='/search' component = {FollowNew} />
+
+          <Route path= "/profile/edit" component = {EditProfile} />
+          <Route path = "/profile" component = {MyProfile} />
+          
+          
+
+          <Route path="/p/:id" component = {Fullpost} />
+
+          <Route path="/acc" exact component = {FollowNew}/>
+          <Route path='/acc/:id/followers' exact component = {Followers}/>
+          <Route path ='/acc/:id/following' exact component ={Following} />
+          <Route path='/acc/:id' exact component = {Account}/>
+
+          <Route path = "/" exact component={Feed} />
+          <Redirect to='/' /> 
+          
+
+        </Switch>
+      );
+    }
+
+    return (
+      <div className="App">
+        <Layout>
+          {routes}
+        </Layout>
+      </div>
+    );
+  }
 }
 
-export default App;
+
+const mapStateToProps = state => {
+  return {
+    isAuth: state.auth.token !== null,
+  }
+};
+
+
+const mapDispatchToprops = dispatch => {
+  return {
+    tryAutoSignIn:()=> dispatch(action.authCheckState()),
+  }
+}
+
+
+export default withRouter(connect(mapStateToProps,mapDispatchToprops)(App));

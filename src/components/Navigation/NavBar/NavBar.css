@@ -1,0 +1,28 @@
+
+.navbar ul{
+    list-style: none;
+    display:flex;
+}
+.navitems{
+    display:flex;
+    justify-content: end;;
+}
+@media (max-width:600px){
+    .bottomBar{
+        margin:0;
+        width:100%;
+        border:nonea
+    }
+    .bottomBarItems{
+        justify-content: stretch;   
+    }
+}
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px)  { 
+    .bottomBar{
+        margin: 0;
+        width:100%;
+        border:none;
+    }
+}

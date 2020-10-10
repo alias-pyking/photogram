@@ -1,0 +1,27 @@
+.postlikeButton{
+    display: block;
+    padding: 10px;
+    background: #fff;
+    color:black;
+    border-radius: 5px;
+    margin:5px;
+    outline: none;
+    border:1px solid #333;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+}
+.Liked {
+    background:#333;
+    border:#fff;
+    color:#fff;
+    cursor: pointer;
+}
+.likesSection{
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    margin-bottom: 0;
+}

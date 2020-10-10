@@ -1,0 +1,20 @@
+.smallProfileImg{
+    width:30px;
+    height: 30px;
+    border-radius: 15px;
+    margin-right: 10px;
+}
+.smallProfileName{
+    font-weight: bold;
+    margin-top:0;
+    padding-top: 0;
+}
+.smallProfile{
+    display: flex;
+    flex-direction: row;
+    width:auto;
+}
+.smallProfile a{
+    text-decoration: none;
+    color:black;
+}

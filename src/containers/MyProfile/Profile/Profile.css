@@ -1,0 +1,74 @@
+.profile{
+    padding:16px;
+}
+.profileUpperSection{
+    display: flex;
+    flex-direction: row;
+}
+.profileImg{
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+}
+.profileUpperSection a{
+    display: block;
+    padding:16px;
+    align-self: center;
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+}
+.profileUpperSection a:hover{
+    background:rgba(204, 204, 204,0.781)
+}
+.followSection{
+    display: flex;
+    flex-direction: row;
+}
+.username{
+    font-size: 20px;
+    margin:3vh;
+}
+.upperRightSection{
+    display: flex;
+    flex-direction: column;
+    padding-top: 4rem;
+    padding-left:4rem;
+}
+.followButton{
+    background:transparent;
+    padding:10px;
+    outline:none;
+    border:2px solid #333;
+    font-weight: bold;
+    cursor: pointer;
+    margin:10px;
+}
+.followButton:hover{
+    background:#333;
+    border:2px solid #fff;
+    color:white;    
+}
+.followButton:not(:hover){
+    background:transparent;
+    border:2px solid #333;
+    color:black;
+}
+@media (max-width:600px){
+    .profileImg{
+        width: 100px;
+        height:100px;
+        border-radius:50px;
+    }
+    .followSection{
+        margin-left: 0vh;
+    }
+    .upperRightSection{
+        padding-left: 0rem;
+    }
+}
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px)  { 
+
+}

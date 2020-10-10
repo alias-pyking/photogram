@@ -1,0 +1,16 @@
+.comment{
+    padding: 16px;
+    width: 300px;
+}
+@media (max-width:600px){
+    .comment{
+     width: inherit;   
+    }
+}
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px)  { 
+    .comment{
+        width:350px;
+    }
+}

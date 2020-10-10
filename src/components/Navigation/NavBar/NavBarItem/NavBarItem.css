@@ -1,0 +1,21 @@
+.bottomBarItem{
+    display:block;
+    box-sizing: border-box;
+    height: 100%;
+}
+.bottomBarItem a{
+    text-decoration: none;
+    display:block;
+    box-sizing: border-box;
+    color:black;
+    height: 100%;
+    padding:10px;
+}
+
+
+.bottomBarItem a:hover{
+    background:rgba(204,204,204,1);
+}
+.active{
+    background:rgba(204,204,204,1) ;
+}

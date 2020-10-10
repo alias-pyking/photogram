@@ -1,0 +1,13 @@
+.posts{
+    /* /* margin-bottom: 100px; */
+    /* display:flow-root;
+    display:flex;
+    justify-self: center;  */
+    margin-bottom: 100px;
+    display: -moz-inline-grid;
+    grid-column-gap: 50px;
+    grid-row-gap: 50px;
+    grid-template-columns: auto auto auto;
+    align-content: space-between;
+}
+
