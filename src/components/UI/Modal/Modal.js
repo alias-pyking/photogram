@@ -1,16 +1,12 @@
-import React,{ Component, useState } from "react";
-import styles from "./Modal.module.css";
+import React,{ useState } from "react";
 import Aux from "../../../containers/hoc/Auxiliary";
-import BackDrop from '../BackDrop/BackDrop';
 import { Toast } from 'react-bootstrap'
 
 function Modal(props) {
 
 	const [showA, setShowA] = useState(true);
-	const [showB, setShowB] = useState(true);
 
 	const toggleShowA = () => setShowA(!showA);
-	const toggleShowB = () => setShowB(!showB);
 
 	return (
 		<Aux>

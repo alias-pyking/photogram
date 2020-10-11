@@ -1,6 +1,6 @@
 import React from 'react';
 import NavBarItem from './NavBarItem/NavBarItem';
-import SearchBar from '../../../containers/Search/Search';
+// import SearchBar from '../../../containers/Search/Search';
 
 
 const NavBar = (props) => {

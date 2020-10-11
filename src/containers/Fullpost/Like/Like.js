@@ -1,7 +1,7 @@
 import React from 'react';
 import './Like.css';
 import axios from 'axios';
-import {Link} from 'react-router-dom';
+
 export default class Like extends React.Component{
     state = {
         liked: this.props.liked,

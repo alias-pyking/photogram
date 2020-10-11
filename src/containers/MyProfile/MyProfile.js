@@ -5,6 +5,7 @@ import Profile from './Profile/Profile';
 import Posts from '../../components/Posts/Posts';
 import './MyProfile.css';
 import Spinner from '../../components/UI/Spinner/Spinner';
+
 class MyProfile extends Component{
     componentDidMount(){ 
         const {userId, token, onLoadProfile, onLoadProfilePosts}  = this.props;

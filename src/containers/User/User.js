@@ -40,7 +40,7 @@ class User extends React.Component {
     render() {
         const {follows} = this.state;
         const {username,user_id, profileImg,userId} = this.props;
-        const show = user_id == userId;
+        const show = user_id === userId;
         return (
             <div className='card m-2'>
             <div className='card-body user'>

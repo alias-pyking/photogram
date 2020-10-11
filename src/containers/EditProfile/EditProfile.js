@@ -50,7 +50,7 @@ class EditProfile extends React.Component{
                 Authorization:`token ${token}`
             }
         }
-        if(username == previousUserName){
+        if(username === previousUserName){
             this.update(username,email,image)
                 .then(response => {
                     this.setState({saving:false});
@@ -110,6 +110,8 @@ class EditProfile extends React.Component{
             case 'email':
                 this.setState({email:event.target.value})
                 break;
+            default:
+                break;
         }
     }
 
@@ -127,7 +129,7 @@ class EditProfile extends React.Component{
                             type='file' onChange = {(event) => this.handleOnInputChange(event,'file')} /> 
 
                             { this.state.previewImg ?<div>
-                                <img src={this.state.previewImg} className='img-rounded-sm m-2' /> 
+                                <img src={this.state.previewImg} alt='preview' className='img-rounded-sm m-2' /> 
                                 <b>Preview of the new profile picture.</b>
                                 </div>:''}
                         </div>

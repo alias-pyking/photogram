@@ -17,7 +17,6 @@ import Logout from './containers/Auth/Logout/Logout';
 import AddPost from './containers/AddPost/AddPost';
 import FollowNew from './containers/FollowNew/FollowNew';
 import Explore from './containers/Explore/Explore';
-import Search from './containers/Search/Search';
 import {connect} from 'react-redux';
 import * as action from './store/actions/index';
 

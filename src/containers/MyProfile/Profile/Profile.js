@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './Profile.css';
 import axios from 'axios';
 import {connect} from 'react-redux';
+
 class Profile extends React.Component{
     state = {
         follows : this.props.follows,
@@ -33,9 +34,9 @@ class Profile extends React.Component{
         })
     }
     render(){
-        const {user_id,userId} = this.props;
-        const {follows} = this.state;
-        const show = user_id == userId;
+        const { user_id, userId } = this.props;
+        const { follows } = this.state;
+        const show = user_id === userId;
         return (
             <div className='row m-4'>
                 <div className='col-lg-4 profileSection'>
