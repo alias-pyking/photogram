@@ -24,7 +24,6 @@ class FullPost extends React.Component{
 
     componentDidMount(){
         const {token} = this.props;
-        console.log(token);
         const {id} = this.props.match.params;
         const postUrl = `${id}`
         const commentsUrl = id+"/comments";
@@ -33,25 +32,21 @@ class FullPost extends React.Component{
         };
         axios.get(postUrl, header)
         .then(response =>{
-            console.log(response.data);
             this.setState({
                 postLoading:false,
                 post:response.data,
             });
         })
         .catch(error =>{
-            console.log(error);
         })
         axios.get(commentsUrl,header)
         .then(response => {
-            console.log(response.data);
             this.setState({
                 comments:response.data,
                 commentLoading:false
             })
         })
         .catch(error =>{
-            console.log(error);
         })
     }
 
@@ -75,7 +70,6 @@ class FullPost extends React.Component{
             const {token} = this.props;
             const commentText = this.state.addCommentText;
             const addCommentUrl = id +'/comments/add_comment/';
-            console.log(addCommentUrl);
             const data = {
                 text:commentText
             }
@@ -84,7 +78,6 @@ class FullPost extends React.Component{
             }
             axios.post(addCommentUrl,data,headers)
             .then( response =>{
-                console.log(response.data);
                 const newComment = response.data;
                 const oldComments = this.state.comments;
                 const newComments = [...oldComments,newComment];
@@ -95,7 +88,6 @@ class FullPost extends React.Component{
                 });
             })
             .catch(error => {
-                console.log(error);
                 this.setState({
                     postingComment:false,
                 })

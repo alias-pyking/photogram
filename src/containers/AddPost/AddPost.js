@@ -2,6 +2,8 @@ import React from 'react';
 import {post} from 'axios';
 import { connect } from 'react-redux';
 import './AddPost.css';
+
+
 class AddPost extends React.Component{
 
     state = {

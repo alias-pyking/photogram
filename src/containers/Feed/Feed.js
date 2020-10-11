@@ -123,7 +123,7 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
     return {
-        loadPosts:(token,page) => dispatch(actionCreators.loadFeed(token,page)),
+        loadPosts:( token, page ) => dispatch(actionCreators.loadFeed(token,page)),
     }
 }
 

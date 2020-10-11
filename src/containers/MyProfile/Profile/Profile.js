@@ -34,7 +34,9 @@ class Profile extends React.Component{
         })
     }
     render(){
-        const { user_id, userId } = this.props;
+        let { user_id, userId } = this.props;
+        user_id = Number(user_id);
+        userId = Number(userId);
         const { follows } = this.state;
         const show = user_id === userId;
         return (
