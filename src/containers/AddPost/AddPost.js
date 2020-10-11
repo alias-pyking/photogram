@@ -87,7 +87,7 @@ class AddPost extends React.Component{
                             type='file' 
                             onChange = {(event) => this.handleOnChange(event,'file')} /> 
                         { this.state.previewImg ?<div>
-                            <img src={this.state.previewImg} alt='preview' className='img-rounded-sm m-2' /> <br></br>
+                            <img src={this.state.previewImg} width='350px' height='350px' alt='preview' className='img-rounded-sm m-2' /> <br></br>
                             <b>Preview of the choosen image.</b>
                             </div>:''}
                     </div>

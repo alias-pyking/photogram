@@ -129,7 +129,7 @@ class EditProfile extends React.Component{
                             type='file' onChange = {(event) => this.handleOnInputChange(event,'file')} /> 
 
                             { this.state.previewImg ?<div>
-                                <img src={this.state.previewImg} alt='preview' className='img-rounded-sm m-2' /> 
+                                <img src={this.state.previewImg} width='350px' height='350px' alt='preview' className='img-rounded-sm m-2' /> <br></br>
                                 <b>Preview of the new profile picture.</b>
                                 </div>:''}
                         </div>
