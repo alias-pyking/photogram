@@ -4,12 +4,16 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 import User from '../User/User';
 import {connect } from 'react-redux';
 import withErrorHandler from '../hoc/withErrorHandler/withErrorHandler';
+
+
 class Search extends React.Component{
+
     state ={
         users:[],
         loading:false,
         error:null,
     }
+
     componentDidMount(){
         const url = 'auth/accounts/search/?q=';
         const {token} = this.props;
@@ -25,6 +29,8 @@ class Search extends React.Component{
             this.setState({error:error,loading:false});
         });
     }
+
+
     handleOnChange = (event) => {
         const text = event.target.value;
         const url = 'auth/accounts/search/?q='+text;
@@ -41,6 +47,8 @@ class Search extends React.Component{
             this.setState({error:error,loading:false});
         });
     }
+
+
     render(){
         let displayUsers = <Spinner/>;
         const {loading} = this.state

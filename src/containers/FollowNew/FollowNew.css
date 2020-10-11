@@ -1,0 +1,13 @@
+.searchBar{
+    display:block;
+    padding: 5px;
+    width: 100%;
+    height: 60px;
+    border:none;
+    outline: none;
+    transition: all 1s;
+}
+.searchBar:focus{
+    outline: none;
+    border-bottom: 1px solid rgb(0, 0, 255);
+}

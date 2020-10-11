@@ -45,15 +45,18 @@ class LikeComponent extends React.Component{
         if(likes === 1) {
             likeKeyword = 'like';
         }
+        const icon = liked ? 'down':'up';
 
         return (
             <div>
             <div className='buttons'>
                 <button className='btn btn-primary m-2' onClick = {this.handleLikeclick}>
-                    {liked ?'dislike':'like'}    
+                    {liked ?'dislike ':'like '} <i className={'fas fa-thumbs-'+icon}></i>
                 </button>
 
-                {this.props.feedpost ? <Link to={'/p/'+this.props.id} className='btn btn-warning m-2'>comments</Link>:''}
+                {this.props.feedpost ? <Link to={'/p/'+this.props.id} className='btn btn-warning m-2'>
+                    comments <i className='fa fa-comment-' aria-hidden={true}></i>
+                </Link>:''}
             </div>
             <div className='likesSection'>
                 <p>{this.state.likes} {likeKeyword} {this.state.liked ? <b> You liked </b>:''} </p>

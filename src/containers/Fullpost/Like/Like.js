@@ -43,15 +43,15 @@ export default class Like extends React.Component{
         if(likes === 1) {
             likeKeyword = 'like';
         }
+        const icon = liked ? 'down':'up';
 
         return (
             <div>
             <div className='buttons'>
-                <Link className='postlikeButton' onClick = {this.handleLikeclick}>
-                    <i className='material-icons'>
-                    {liked ?'thumb_down':'thumb_up_alt'}    
+                <button className='btn btn-primary' onClick = {this.handleLikeclick}>
+                {liked ? 'dislike ':'like '}<i className={'fas fa-thumbs-'+icon}>
                     </i>
-                </Link>
+                </button>
             </div>
             <div className='likesSection'>
                 <p>{this.state.likes} {likeKeyword} {this.state.liked ? <b> You liked </b>:''} </p>

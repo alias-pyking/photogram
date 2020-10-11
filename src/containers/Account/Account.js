@@ -60,7 +60,7 @@ class Account extends React.Component {
             profilePosts = <Posts posts = {posts}/>
         }
         return(
-            <div className='col s12'>
+            <div className='col'>
                 <div className='account'>
                     {displayProfile}
                     {profilePosts}

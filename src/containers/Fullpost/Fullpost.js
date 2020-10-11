@@ -6,7 +6,10 @@ import Header from '../../components/Header/header';
 import Like from './Like/Like';
 import Comment from './Comment/Comment';
 import {connect} from 'react-redux';
+
+
 class FullPost extends React.Component{
+
     state = {
         postLoading:true,
         post:{},
@@ -16,6 +19,9 @@ class FullPost extends React.Component{
         postingComment:false,
         error:null,
     }
+
+
+
     componentDidMount(){
         const {token} = this.props;
         console.log(token);
@@ -48,6 +54,7 @@ class FullPost extends React.Component{
             console.log(error);
         })
     }
+
     onTextAreaChange = event =>{
         const newCommentText = event.target.value;
         if(newCommentText.length > 0){
@@ -56,6 +63,7 @@ class FullPost extends React.Component{
             this.setState({addCommentText:'',})
         }
     }
+
     submitCommentForm = event =>{
         event.preventDefault();
         const comment = this.state.addCommentText;
@@ -94,37 +102,41 @@ class FullPost extends React.Component{
             })
         }
     }
+
+
     render(){
+        
+        const styles = {
+            maxHeight:'80vh'
+        }
+
         let displayPost = <Spinner/>;
         let displayComments = <Spinner/>
         const {token} = this.props;
         const {postLoading,commentLoading, error} = this.state;
         let header = <p>.</p>;
         let like = <></>;
+
+
         if(!postLoading) {
             const {post}  = this.state;
+
             header = <Header user_id = {post.user_id} authorImg = {post.userProfileImage} username = {post.userName} />;
-            like = (<div className='card-action'>
-                            <Like
-                                token = {token}
-                                url = {post.url}
-                                id = {post.id}
-                                likes = {post.likes}
-                                liked = {post.liked}/>
-                        </div>);
+
+            like = (<Like
+                        token = {token}
+                        url = {post.url}
+                        id = {post.id}
+                        likes = {post.likes}
+                        liked = {post.liked}/>);
+
             displayPost = (
-                <div className='col s12 m6 l6'>
                 <div className='card'>
-                    <div className='lowerSection'>
-                        <div className='card-image'>
-                            <img src={post.image} className='responsive-img' alt={post.caption}/>
-                        </div>
-                        
-                        <div className='footer card-content'>
-                            <p> <b>{post.userName}</b>  {post.caption}</p>
-                        </div>
+                    <img src={post.image} className='card-img-top' alt={post.caption} style={styles}/>
+                    
+                    <div className='card-body'>
+                        <p> <b>{post.userName}</b>  {post.caption}</p>
                     </div>
-                </div>
                 </div>
             );
         }
@@ -143,46 +155,48 @@ class FullPost extends React.Component{
         }
         return(
             <div className='row'>
-
-                        {displayPost}
-                    
-                    <div className='col s12 m6 l6 commentSection'> 
-                        <div className='commentHead'>
-                            {header}
-                        </div>
-                        <div className='commentsList'>
-                            {displayComments}   
-                        </div>
-                        {like}
-                        <div className='addComment'>
-                            <form>
-                                <textarea 
-                                onChange={this.onTextAreaChange}
-                                className='addCommentTextArea'
-                                placeholder='Add a comment'
-                                value={this.state.addCommentText}
-                                />
-                                
-                                {error ? <p className='errorText'>{error}</p>:''}
-
-                                <button
-                                onClick={this.submitCommentForm}
-                                className='blue btn waves-effect waves-light' 
-                                type='submit'
-                                >
-                                {this.state.postingComment? 'posting...':'Post'}
-                                <i className='material-icons right'>send</i>
-                                </button>
-                            </form>
-                        </div>
+                <div className='col-lg-8'>
+                    {displayPost}
+                </div> 
+                <div className='col-lg-4'> 
+                    <div className='card'>
+                        {header}
                     </div>
+                    <div className='card m-2 commentList'>
+                        {displayComments}   
+                    </div>
+                    {like}
+                    <form>
+                        <textarea 
+                        onChange={this.onTextAreaChange}
+                        className='card addCommentTextArea'
+                        placeholder='Add a comment'
+                        value={this.state.addCommentText}
+                        />
+                        
+                        {error ? <p className='alert alert-danger alert-dismissible'>{error}</p>:''}
+
+                        <button
+                        onClick={this.submitCommentForm}
+                        className='btn btn-primary btn-block' 
+                        type='submit'
+                        >   
+                        {this.state.postingComment? 'posting...':'Post '}
+                        <i className='fas fa-paper-plane'></i>
+                        </button>
+                    </form>
                 </div>
+            </div>
         );
     }
 }
+
+
 const mapStateToProps = (state) => {
     return {
         token : state.auth.token,
     }
 }
+
+
 export default  connect(mapStateToProps)(FullPost);

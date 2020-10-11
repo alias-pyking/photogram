@@ -45,21 +45,23 @@ class User extends React.Component {
         const show = user_id == userId;
         console.log(show);
         return (
-            <div className='user card-panel'>
+            <div className='card m-2'>
+            <div className='card-body user'>
                 <SmallProfile 
-                profileImg= {profileImg}
-                user_id = {user_id} 
-                authorName = {username}
-                />
-            {show?'':
-                <button
-                className='blue waves-effect waves-light btn'
-                onClick = {this.handleFollowClick}
-                >
-                {follows ? 'Unfollow': 'Follow'}
-                
-                </button>
-            }
+                    profileImg= {profileImg}
+                    user_id = {user_id} 
+                    authorName = {username}
+                    />
+                {show?'':
+                    <button
+                    className='btn btn-primary m-2'
+                    onClick = {this.handleFollowClick}
+                    >
+                    {follows ? 'Unfollow': 'Follow'}
+                    
+                    </button>
+                }
+            </div>
             </div>
         );
     }

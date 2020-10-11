@@ -1,23 +1,6 @@
 
-.commentHead{
-    margin-top: 10px;
-    width: inherit;
-}
-.commentsList{
-    margin-top: 20px;
-    width: inherit;
-    height: 500px;
-    scroll-behavior: smooth;
-    overflow-y:auto;   
-}
-.addComment{
-    width: inherit;
-    margin-bottom: 100px;
-}
 .addCommentTextArea{
-    padding:16px;
-    width: 300px;
-    height:60px;
+    width: 100%;
     border-top: none;
     border-left:none;
     border-right:none;
@@ -30,70 +13,8 @@
     transition:0.3s;
     border-bottom: 1px solid rgb(40, 152, 204);
 }
-.addComment form{
-    display: flex;
-    flex-direction:column;
-}
-.addCommentbutton{
-    float: right;
-    width: fit-content;
-    padding:16px;
-    background-color: transparent;
-    background:transparent;
-    border:none;
-    outline:none;
-    color:rgb(40, 152, 204);
-    cursor:pointer;
-    display: block;
-}
-.addCommentbutton:hover{
-    border:1px solid rgba(0,0,0,0.2))
-}   
-.errorText{
-    color:red;
-    font-size: 15px;
-}
-@media (max-width:600px){
-    .fullPost{
-        display:flex;
-        flex-direction: column;
-        width: 100%;
-        height:fit-content;
-        overflow-x: hidden;
-        align-self: center;
-    }
-    .post{
-        height: 100%;
-        width: 100%;
-    }
-    .commentsList{
-        height: 600px;
-    }
-    .addCommentTextArea{
-        width: 100%;
-        height:60px;
-        border-top: none;
-        border-left:none;
-        border-right:none;
-        overflow-x: hidden;
-    
-    }
-}
-@media only screen 
-and (min-device-width : 768px) 
-and (max-device-width : 1024px)  { 
-    .fullPost{
-        display:flex;
-        flex-direction: row;
-        width: 100%;
-    }
-    .commentsList{
-        height: 300px;
-    }
-}
-@media only screen
-and (max-device-width:1400) {
-    .commentsList{
-        height: 300px;
-    }
+
+.commentList{
+    max-height: 50vh;
+    overflow-y: auto;
 }

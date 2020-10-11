@@ -4,12 +4,16 @@ import {connect} from 'react-redux';
 import User from '../User/User';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import withErrorHandler from '../hoc/withErrorHandler/withErrorHandler';
+import './FollowNew.css';
+
+
 class FollowNew extends React.Component {
     state ={
         users:[],
         loading:true,
         error:null,
     }
+
     componentDidMount(){
         const url = 'auth/accounts';
         const {token} = this.props;
@@ -22,8 +26,9 @@ class FollowNew extends React.Component {
         })
         .catch(error => {
             this.setState({error:error,loading:false});
-        })
+        });
     }
+
     handleOnChange = (event) => {
         const text = event.target.value;
         const url = 'auth/accounts/search/?q='+text;
@@ -40,6 +45,7 @@ class FollowNew extends React.Component {
             this.setState({error:error,loading:false});
         });
     }
+
     render(){
         let displayUsers = <Spinner/>;
         const {loading} = this.state
@@ -61,8 +67,8 @@ class FollowNew extends React.Component {
         }
         return (
             <div className='row'>
-                <div className='col s12 m8'>
-                <input placeholder='Search Users ' onChange = { this.handleOnChange } />
+                <div className='col'>
+                <input className='searchBar' placeholder='Search Users ' onChange = { this.handleOnChange } />
                     {displayUsers}
                 </div>
             </div>

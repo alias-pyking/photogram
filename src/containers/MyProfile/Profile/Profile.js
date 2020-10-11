@@ -38,19 +38,22 @@ class Profile extends React.Component{
         const show = user_id == userId;
         console.log(user_id);
         return (
-            <div className='profile'>
-                <div className='profileUpperSection'>
-                    <img src={this.props.profileImg} alt = {this.props.username} className='profileImg'/>
-                    <div className = 'upperRightSection'>
+            <div className='row m-4'>
+                <div className='col-lg-4 profileSection'>
+                    <img src={this.props.profileImg} alt = { this.props.username } className='rounded-circle profileImg'/>
+                    <b> { this.props.username }</b>
+                </div>
+                <div>
+                <div className = 'col-lg-8'>
                         <div className='followSection'>
-                            <Link to={`/acc/${user_id}/followers`}>Followers {this.props.followers}</Link>
-                            <Link to= {`/acc/${user_id}/following`}>Following {this.props.following}</Link>
+                            <Link className='btn followBtn' to={`/acc/${user_id}/followers`}>Followers {this.props.followers}</Link>
+                            <Link className='btn followBtn' to= {`/acc/${user_id}/following`}>Following {this.props.following}</Link>
                         </div>
                         
                         {show? 
                        <> 
-                    <Link to='/profile/edit' className='edit waves-effect waves-light'>Edit_Profile</Link>
-                    <Link to='/logout' className ="red waves-effect waves-light">Logout</Link>
+                    <Link to='/profile/edit' className='btn btn-warning m-2'>Edit Profile</Link>
+                    <Link to='/logout' className ="btn btn-danger m-2">Logout</Link>
                     </>
                         :
                         <button
@@ -62,7 +65,6 @@ class Profile extends React.Component{
                         }
                     </div>
                 </div>
-                <b className='username'>{this.props.username}</b>
             </div>
         );
     }

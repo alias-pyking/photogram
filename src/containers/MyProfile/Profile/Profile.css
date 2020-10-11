@@ -1,4 +1,26 @@
-.profile{
+
+.followSection{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.followBtn{
+    display: block;
+}
+.followBtn:hover{
+    background:rgba(0, 0, 0, 0.2);
+    border:2px solid #fff;
+    color:white; 
+}
+.profileImg{
+    height: 160px;
+    width: 160px;
+}
+.profileSection{
+    display: flex;
+    flex-direction: column;
+}
+/* .profile{
     padding:16px;
 }
 .profileUpperSection{
@@ -21,10 +43,7 @@
 .profileUpperSection a:hover{
     background:rgba(204, 204, 204,0.781)
 }
-.followSection{
-    display: flex;
-    flex-direction: row;
-}
+
 .username{
     font-size: 20px;
     margin:3vh;
@@ -71,4 +90,4 @@
 and (min-device-width : 768px) 
 and (max-device-width : 1024px)  { 
 
-}
+} */

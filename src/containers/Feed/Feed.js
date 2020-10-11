@@ -60,19 +60,32 @@ class Feed extends Component{
                         />
                 });
                 if(!prev){
-                    previous = <li className="disabled"><a href="#!"><i className="material-icons">chevron_left</i></a></li>;
+                    previous = (
+                        <li className="page-item disabled">
+                            <button className='page-link' aria-label='previous'><span aria-hidden="true">Previous</span></button>
+                        </li>);
                 } else {
                     const previousPageNumber = getPageNumber(prev);
                     console.log(previousPageNumber);
-                    previous = <li><div onClick = {() => this.loadPaginationPosts(previousPageNumber)}>
-                                <i className="material-icons">chevron_left</i></div></li>;
+                    previous = (
+                        <li className='page-item'>
+                        <button className='page-link' onClick = {() => this.loadPaginationPosts(previousPageNumber)}>
+                            Previous
+                        </button>
+                        </li>);
                 }
                 if(!next){
-                    nextPosts = <li className="disabled"><a href="#!"><i className="material-icons">chevron_right</i></a></li>;
+                    nextPosts = (<li className="page-item disabled">
+                                    <button className='page-link' aria-label='next'><span aria-hidden="true">Next</span></button>
+                                </li>);
                 } else {
                     const nextPageNumber = getPageNumber(next);
-                    nextPosts = <li className="waves-effect"><div onClick = {() => this.loadPaginationPosts(nextPageNumber)}>
-                                <i className="material-icons">chevron_right</i></div></li>;
+                    nextPosts =(
+                        <li className='page-item'>
+                            <button className='page-link' onClick = {() => this.loadPaginationPosts(nextPageNumber)}>
+                                Next
+                            </button>
+                        </li>);
                 }
 
             }
@@ -82,9 +95,10 @@ class Feed extends Component{
             <div className='row'>
                 <div className='col s12 m7'>
                     {displayPosts}
-                    <ul className="pagination">
+                    <ul class="pagination">
                         {previous}
-                        <li className="active blue"><a href="#!">{!loading? this.props.currentPage:''}</a></li>
+                        <li class="page-item active">
+                            <a href="#!" className='page-link'>{!loading? this.props.currentPage:''}</a></li>
                         {nextPosts}
                     </ul>
                 </div>

@@ -7,16 +7,17 @@ class Posts extends React.Component{
         const {posts} = this.props;
         const displayPosts = posts.map((post) => {
             return <Post
-                    key = {post.id}
-                    image = {post.image}
-                    caption = {post.caption}
-                    id = {post.id}
-                    likes = {post.likes}
-                    comments = {post.comments}
+                    user={ post.userName }
+                    key ={ post.id }
+                    image ={ post.image }
+                    caption ={ post.caption }
+                    id ={ post.id }
+                    likes ={ post.likes }
+                    comments ={ post.comments }
             />
         });
         return (
-            <div className='posts'>
+            <div className='row'>
                 {displayPosts}
             </div>
         );

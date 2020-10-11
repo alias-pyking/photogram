@@ -30,41 +30,36 @@ class  App extends React.Component {
 
   render(){
     let routes = (
-      <Switch>
-
-        <Route path='/auth' exact component = {Auth}/>
+    <Switch>
+        <Route path='/auth' exact component = {Auth} />
         <Redirect to ='/auth'/>
+    </Switch>);
 
-      </Switch>
-    );
-
-    const {isAuth} = this.props;
+    const { isAuth } = this.props;
     if(isAuth) {
       routes = (
         <Switch>
-          <Route path="/new" component = {AddPost}/>
-          <Route path="/explore" component = {Explore} />
-          <Route path="/auth" component = {Auth} />
-          <Route path = "/logout" component = {Logout} />
-          <Route path='/search' component = {FollowNew} />
-
-          <Route path= "/profile/edit" component = {EditProfile} />
-          <Route path = "/profile" component = {MyProfile} />
-          
-          
-
-          <Route path="/p/:id" component = {Fullpost} />
-
-          <Route path="/acc" exact component = {FollowNew}/>
-          <Route path='/acc/:id/followers' exact component = {Followers}/>
-          <Route path ='/acc/:id/following' exact component ={Following} />
-          <Route path='/acc/:id' exact component = {Account}/>
-
-          <Route path = "/" exact component={Feed} />
-          <Redirect to='/' /> 
-          
-
-        </Switch>
+            <Route path="/new" component = {AddPost}/>
+            <Route path="/auth" component = {Auth} />
+            <Route path = "/logout" component = {Logout} />
+    
+            <Route path= "/profile/edit" component = {EditProfile} />
+            <Route path = "/profile" component = {MyProfile} />
+            
+            <Route path="/explore" exact component = {Explore} />
+            <Route path='/search' exact component = {FollowNew} />
+    
+            <Route path="/p/:id" component = {Fullpost} />
+    
+            <Route path="/acc" exact component = {FollowNew}/>
+            <Route path='/acc/:id/followers' exact component = {Followers}/>
+            <Route path ='/acc/:id/following' exact component ={Following} />
+            <Route path='/acc/:id' exact component = {Account}/>
+    
+            <Route path = "/" exact component={Feed} />
+            <Redirect to='/' /> 
+    
+          </Switch>
       );
     }
 

@@ -12,7 +12,11 @@ class EditProfile extends React.Component{
         image:null,
         loading:true,
         saving:false,
+        previewImg:null,
     }
+
+
+
     componentDidMount(){
         const {token} = this.props;
         const config = {
@@ -33,6 +37,7 @@ class EditProfile extends React.Component{
 
         })
     }
+
     handleOnSubmit = event => {
         event.preventDefault();
         const {username,previousUserName, email,image} = this.state;
@@ -73,9 +78,8 @@ class EditProfile extends React.Component{
             });
             
         }
-
-
     }
+
     update(username,email, image){
         const{token, userId} = this.props;
         const profileEditUrl = `https://instaclone.pythonanywhere.com/api/auth/accounts/${userId}/edit/`;
@@ -92,12 +96,13 @@ class EditProfile extends React.Component{
             }
         }
         return put(profileEditUrl, formData,config);
-      }
+    }
+
     handleOnInputChange = (event, type) => {
         event.preventDefault();
         switch(type){
             case 'file':    
-                this.setState({image:event.target.files[0]})
+                this.setState({image:event.target.files[0], previewImg: URL.createObjectURL(event.target.files[0])})
                 break;
             case 'username':
                 this.setState({username:event.target.value});
@@ -106,35 +111,55 @@ class EditProfile extends React.Component{
                 this.setState({email:event.target.value})
                 break;
         }
-        
     }
+
     render(){
         let form = <Spinner/>;
         const {loading} = this.state;
         if(!loading) {
             const {username,email} = this.state;
             form = <form onSubmit = {this.handleOnSubmit}>
+                        <div className='form-group'>
+                            <label for='editProfileimg'>Change Profile Pic</label><br/>
+                            <input
+                            id='editProfileimg'
+                            className='form-control-file'
+                            type='file' onChange = {(event) => this.handleOnInputChange(event,'file')} /> 
 
-                        <label>Change Profile Pic</label><br/>
-                        <input type='file' onChange = {(event) => this.handleOnInputChange(event,'file')} /> <br/>
-                        <label>Username</label> <br/>
-                        <input value={username} type='text' onChange = {(event) => this.handleOnInputChange(event,'username')} /> 
+                            { this.state.previewImg ?<div>
+                                <img src={this.state.previewImg} className='img-rounded-sm m-2' /> 
+                                <b>Preview of the new profile picture.</b>
+                                </div>:''}
+                        </div>
+                        <div className='form-group'>
+                            <label for='usernameInput'>Username</label>
+                            <input id='usernameInput'
+                                className='form-control'
+                                value={username} 
+                                type='text' onChange = {(event) => this.handleOnInputChange(event,'username')} /> 
+                        </div>
                         {this.state.usernameError?
-                         <p>This username already exists</p>
+                         <p className='alert alert-danger'>This username already exists</p>
                           : '' 
                         }
-                        <br/>
-                        <label>Email</label><br/>
-                        <input type='email' value={email} onChange = {(event) => this.handleOnInputChange(event,'email')} /><br/>
-                        <button className='blue btn waves-effect waves-light' type='submit'>
-                        {this.state.saving ?  'Saving...'
-                        :'Save'
+                        <div className='form-group'>
+                            <label for='userEmailInput'>Email</label>
+                            <input type='email'
+                            className='form-control'
+                            id='userEmailInput'
+                            value={email} onChange = {(event) => this.handleOnInputChange(event,'email')} /><br/>
+                        </div>
+                        
+                        <button className='btn btn-success' type='submit'>
+                        {this.state.saving ?  'Saving... '
+                        :'Save '
                         }
+                        <i className='fas fa-save'></i>
                         </button>
                     </form>
         }
         return(
-            <div>
+            <div className='col card p-3'>
                 <h2>Edit Profile</h2>
                 {form}
             </div>

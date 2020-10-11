@@ -13,7 +13,7 @@ function getPageNumber(url){
 }   
 class Explore extends React.Component {
     componentDidMount(){
-        const{token,loadPosts} = this.props;
+        const{ token, loadPosts } = this.props;
         loadPosts(token,1);
     }
     loadPaginationPosts = (pageNumber) => {
@@ -32,19 +32,33 @@ class Explore extends React.Component {
             const {posts, prev, next} = this.props;
             displayPosts = <Posts posts = {posts}/>
             if(!prev){
-                previous = <li className="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>;
+                previous = (
+                <li className="page-item disabled">
+                    <button className='page-link' aria-label='previous'><span aria-hidden="true">Previous</span></button>
+                </li>);
             } else {
                 const previousPageNumber = getPageNumber(prev);
                 console.log(previousPageNumber);
-                previous = <li><div onClick = {() => this.loadPaginationPosts(previousPageNumber)}>
-                            <i class="material-icons">chevron_left</i></div></li>;
+                previous = (
+                <li className='page-item'>
+                <button className='page-link' onClick = {() => this.loadPaginationPosts(previousPageNumber)}>
+                    Previous
+                </button>
+                </li>);
             }
+
             if(!next){
-                nextPosts = <li class="disabled"><a href="#!"><i class="material-icons">chevron_right</i></a></li>;
+                nextPosts = (<li className="page-item disabled">
+                            <button className='page-link' aria-label='next'><span aria-hidden="true">Next</span></button>
+                        </li>);
             } else {
                 const nextPageNumber = getPageNumber(next);
-                nextPosts = <li class="waves-effect"><div onClick = {() => this.loadPaginationPosts(nextPageNumber)}>
-                            <i class="material-icons">chevron_right</i></div></li>;
+                nextPosts = (
+                <li className='page-item'>
+                    <button className='page-link' onClick = {() => this.loadPaginationPosts(nextPageNumber)}>
+                        Next
+                    </button>
+                </li>);
             }
         }
         return (
@@ -52,7 +66,8 @@ class Explore extends React.Component {
                 {displayPosts}
                 <ul class="pagination">
                         {previous}
-                        <li class="active blue"><a href="#!">{!loading? this.props.currentPage:''}</a></li>
+                        <li class="page-item active">
+                            <a href="#!" className='page-link'>{!loading? this.props.currentPage:''}</a></li>
                         {nextPosts}
                 </ul>
             </div>

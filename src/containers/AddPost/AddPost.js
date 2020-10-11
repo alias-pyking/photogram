@@ -3,16 +3,20 @@ import {post} from 'axios';
 import { connect } from 'react-redux';
 import './AddPost.css';
 class AddPost extends React.Component{
+
     state = {
         image:null,
         caption:"",
         submitting:false,
-        error:null
+        error:null,
+        previewImg:null,
     }
+
+
     handleOnChange =(event,type) => {
         switch(type){
             case 'file':
-                this.setState({image:event.target.files[0]});
+                this.setState({image:event.target.files[0], previewImg:URL.createObjectURL(event.target.files[0])});
                 break;
             case 'caption':
                 this.setState({caption:event.target.value });
@@ -21,6 +25,8 @@ class AddPost extends React.Component{
                 break;
         }
     }
+
+
     handleSubmit = (event) =>{
         event.preventDefault();
         const {image, caption} = this.state;
@@ -49,6 +55,8 @@ class AddPost extends React.Component{
             
         }
     }
+
+
     add(caption, image){
         const{token} = this.props;
         const profileEditUrl = `https://instaclone.pythonanywhere.com/api/add_post/`;
@@ -61,37 +69,57 @@ class AddPost extends React.Component{
             }
         }
         return post(profileEditUrl, formData,config);
-      }
+    }
+        
         
     render() {
         return(
-            <div>
+            <div className='col card p-3'>
                 <h3>Add new post</h3>
                 <form onSubmit = {this.handleSubmit}>
-                    <label>Image</label>
-                    <input required 
-                    type='file' 
-                    onChange = {(event) => this.handleOnChange(event,'file')} /> <br/>
-                    <label>Caption</label>
-                    <textarea 
-                    className='captionText'
-                    maxLength = {250} value = {this.state.caption} 
-                    onChange = { (event) => this.handleOnChange(event,'caption')}/>
-                    {this.state.error ? <p> {this.state.error} </p>:''}
-                    <button class="blue btn waves-effect waves-light" type="submit" name="action">
+                    <div className='form-group'>
+                    <label for='imageInput'>Image</label>
+                        <input required 
+                            id='imageInput'
+                            className='form-control-file'
+                            type='file' 
+                            onChange = {(event) => this.handleOnChange(event,'file')} /> 
+                        { this.state.previewImg ?<div>
+                            <img src={this.state.previewImg} className='img-rounded-sm m-2' /> <br></br>
+                            <b>Preview of the choosen image.</b>
+                            </div>:''}
+                    </div>
+                    <div className='form-group'>
+                        <label for='captionTextArea'>Caption</label>
+                        <textarea 
+                        id='captionTextArea'
+                        className='form-control'
+                        maxLength = {250} value = {this.state.caption} 
+                        onChange = { (event) => this.handleOnChange(event,'caption')}/>
+                    </div>
+                    {this.state.error ? <p className='alert alert-danger'> {this.state.error} </p>:''}
+                    <button
+                        disabled={this.state.submitting ? true:false}
+                        class="btn btn-success"
+                        type="submit"
+                        name="action">
 
-                    {this.state.submitting?'Submiting...':'Submit'}
+                    {this.state.submitting?'Submiting...':'Submit '}
 
-                        <i class="material-icons right">send</i>
+                        <i class="fas fa-paper-plane"></i>
                     </button>
                 </form>
             </div>
         );
     }
 }
+
+
 const mapStateToProps = state => {
     return {
         token:state.auth.token,
     }
 }
+
+
 export default connect(mapStateToProps)(AddPost);
