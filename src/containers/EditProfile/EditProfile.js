@@ -120,7 +120,7 @@ class EditProfile extends React.Component{
             const {username,email} = this.state;
             form = <form onSubmit = {this.handleOnSubmit}>
                         <div className='form-group'>
-                            <label for='editProfileimg'>Change Profile Pic</label><br/>
+                            <label htmlFor='editProfileimg'>Change Profile Pic</label><br/>
                             <input
                             id='editProfileimg'
                             className='form-control-file'
@@ -132,7 +132,7 @@ class EditProfile extends React.Component{
                                 </div>:''}
                         </div>
                         <div className='form-group'>
-                            <label for='usernameInput'>Username</label>
+                            <label htmlFor='usernameInput'>Username</label>
                             <input id='usernameInput'
                                 className='form-control'
                                 value={username} 
@@ -143,7 +143,7 @@ class EditProfile extends React.Component{
                           : '' 
                         }
                         <div className='form-group'>
-                            <label for='userEmailInput'>Email</label>
+                            <label htmlFor='userEmailInput'>Email</label>
                             <input type='email'
                             className='form-control'
                             id='userEmailInput'

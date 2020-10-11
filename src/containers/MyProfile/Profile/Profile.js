@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 class Profile extends React.Component{
     state = {
         follows : this.props.follows,
+        error: null,
     }
     handleFollowClick = () => {
         const {follows} = this.state;
@@ -28,15 +29,13 @@ class Profile extends React.Component{
             this.setState({follows:!follows});
         })
         .catch(error => {
-            console.log(error);
-
+            this.setState({error:error});
         })
     }
     render(){
         const {user_id,userId} = this.props;
         const {follows} = this.state;
         const show = user_id == userId;
-        console.log(user_id);
         return (
             <div className='row m-4'>
                 <div className='col-lg-4 profileSection'>

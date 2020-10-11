@@ -149,7 +149,7 @@ class Auth extends React.Component {
         let errorMessage = null;
         if(this.props.error){
             errorMessage = (
-                <p>{this.props.error.message}</p>
+                <p className='alert alert-danger'>{this.props.error.message}</p>
             );
         }
         let authRedirect = null;
@@ -158,7 +158,8 @@ class Auth extends React.Component {
             authRedirect = <Redirect to = {this.props.authRedirectPath}/>
         }
         return(
-            <div className = 'Auth'>
+            <div className='row'>
+            <div className = 'card Auth col p-2'>
                 {authRedirect}
                 {errorMessage}
 
@@ -171,6 +172,7 @@ class Auth extends React.Component {
                 <Button
                 clicked = {this.switchAuthModeHandler}
                  btnType="Danger">SWITCH TO {this.state.isSignUp? 'SIGNIN':'SIGNUP'} </Button>
+            </div>
             </div>
         );
     }

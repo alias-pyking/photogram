@@ -78,7 +78,7 @@ class AddPost extends React.Component{
                 <h3>Add new post</h3>
                 <form onSubmit = {this.handleSubmit}>
                     <div className='form-group'>
-                    <label for='imageInput'>Image</label>
+                    <label htmlFor='imageInput'>Image</label>
                         <input required 
                             id='imageInput'
                             className='form-control-file'
@@ -90,7 +90,7 @@ class AddPost extends React.Component{
                             </div>:''}
                     </div>
                     <div className='form-group'>
-                        <label for='captionTextArea'>Caption</label>
+                        <label htmlFor='captionTextArea'>Caption</label>
                         <textarea 
                         id='captionTextArea'
                         className='form-control'
@@ -100,13 +100,13 @@ class AddPost extends React.Component{
                     {this.state.error ? <p className='alert alert-danger'> {this.state.error} </p>:''}
                     <button
                         disabled={this.state.submitting ? true:false}
-                        class="btn btn-success"
+                        className="btn btn-success"
                         type="submit"
                         name="action">
 
                     {this.state.submitting?'Submiting...':'Submit '}
 
-                        <i class="fas fa-paper-plane"></i>
+                        <i className="fas fa-paper-plane"></i>
                     </button>
                 </form>
             </div>

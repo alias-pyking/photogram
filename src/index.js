@@ -13,8 +13,9 @@ import exploreReducer from './store/reducers/explore';
 
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
-import {BrowserRouter} from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
+import { ToastContainer, toast } from 'react-toastify'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -28,6 +29,7 @@ const rootReducer = combineReducers({
 const store = createStore(rootReducer,composeEnhancers(applyMiddleware(thunk)));
 const app = (
     <Provider store = {store}>
+    <ToastContainer position={ toast.POSITION.BOTTOM_CENTER} autoClose={3000}/>
     <BrowserRouter>
         <App/>
     </BrowserRouter>

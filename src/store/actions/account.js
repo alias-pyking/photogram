@@ -48,11 +48,9 @@ export const loadProfile = (token) => {
         }
         axios.get(profileUrl,headers)
         .then(response =>{
-            console.log(response.data);
             dispatch(loadingProfileSuccess(response.data));
         })
         .catch(error =>{
-            console.log(error);
             dispatch(loadingProfileFail(error));
         });
     }
@@ -72,7 +70,6 @@ export const loadProfilePosts = (userId, token, page) =>{
             dispatch(loadingProfilePostsSuccess(results));
         })
         .catch(error =>{
-            console.log(error);
             dispatch(loadingProfilePostsFail(error));
         });
     }

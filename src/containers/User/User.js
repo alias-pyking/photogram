@@ -33,7 +33,6 @@ class User extends React.Component {
             this.setState({follows:!follows});
         })
         .catch(error => {
-            console.log(error);
         });
     }
 
@@ -41,9 +40,7 @@ class User extends React.Component {
     render() {
         const {follows} = this.state;
         const {username,user_id, profileImg,userId} = this.props;
-        console.log(userId,user_id);
         const show = user_id == userId;
-        console.log(show);
         return (
             <div className='card m-2'>
             <div className='card-body user'>

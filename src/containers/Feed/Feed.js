@@ -95,9 +95,9 @@ class Feed extends Component{
             <div className='row'>
                 <div className='col s12 m7'>
                     {displayPosts}
-                    <ul class="pagination">
+                    <ul className="pagination">
                         {previous}
-                        <li class="page-item active">
+                        <li className="page-item active">
                             <a href="#!" className='page-link'>{!loading? this.props.currentPage:''}</a></li>
                         {nextPosts}
                     </ul>

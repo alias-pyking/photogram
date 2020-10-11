@@ -55,19 +55,18 @@ export const auth = (username, email, password, isSignUp) => {
             }
         }
         axios.post(authUrl,authData)
-        .then((response) =>{
+        .then( res => {
             const expiresIn = 10*60*60;
             const expirationDate = new Date(new Date().getTime() +expiresIn*1000 );
-            localStorage.setItem('token',response.data.token);
-            localStorage.setItem('userId', response.data.user.id);
-            localStorage.setItem('username',response.data.user.username);
+            localStorage.setItem('token',res.data.token);
+            localStorage.setItem('userId', res.data.user.id);
+            localStorage.setItem('username',res.data.user.username);
             localStorage.setItem('expirationDate',expirationDate)
-            dispatch(authSuccess(response.data.token, response.data.user.id, response.data.user.username));
+            dispatch(authSuccess(res.data.token, res.data.user.id, res.data.user.username));
             dispatch(checkAuthTimeout(expiresIn));
         })
         .catch((error) => {
-            console.log(error);
-            dispatch(authFail(error));
+            dispatch(authFail(new Error('Either username of password is incorrect')));
         });
     }
 }
@@ -95,8 +94,7 @@ export const checkAuthTimeout=(expirationTime)=>{
     }
 }
 export const authCheckState = () =>{
-    console.log('authcheckstate[auth.js 98]');
-    console.log(window.location)
+    
     return dispatch => {
         const token = localStorage.getItem('token');
         if(!token) {

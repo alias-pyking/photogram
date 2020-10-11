@@ -1,30 +1,48 @@
-import React,{Component } from "react";
+import React,{ Component, useState } from "react";
 import styles from "./Modal.module.css";
 import Aux from "../../../containers/hoc/Auxiliary";
 import BackDrop from '../BackDrop/BackDrop';
-class Modal extends Component{
-	shouldComponentUpdate(nextProps, _nextState){
-		if(nextProps.show !== this.props.show || nextProps.children !== this.props.children){
-			return true;
-		}
-		return false;
-	}
-	render(){
-		return (
-			<Aux>
-			<BackDrop show = {this.props.show} clicked = {this.props.modalClosed}/>
-			<div
-				className={styles.Modal}
-				style={{
-					transform: this.props.show ? "translateY(0)" : "translateY(-100vh)",
-					opacity: this.props.show ? "1" : "0"
-				}}
-			>
-				{this.props.children}
-			</div>
-			</Aux>
-		);
-	}
-};
+import { Toast } from 'react-bootstrap'
 
+function Modal(props) {
+
+	const [showA, setShowA] = useState(true);
+	const [showB, setShowB] = useState(true);
+
+	const toggleShowA = () => setShowA(!showA);
+	const toggleShowB = () => setShowB(!showB);
+
+	return (
+		<Aux>
+		{ props.show ? 
+		<Toast
+			style={{
+				position:'fixed',
+				bottom:0,
+				right:0,
+				maxWidth:'100%',
+				background:'#FD363C',
+				color:'white',
+				zIndex:'2'
+			}}
+		show={showA} onClose={toggleShowA}>
+			<Toast.Header
+			style={{
+				background:'#FD363C',
+				color:'white',
+			}}
+			>
+			<img
+				src="holder.js/20x20?text=%20"
+				className="rounded mr-2"
+				alt=""
+			/>
+			<strong className="mr-auto">Error</strong>
+			</Toast.Header>
+			<Toast.Body>{ props.children }</Toast.Body>
+		</Toast>
+		: ''}
+		</Aux>
+	);
+}
 export default Modal;

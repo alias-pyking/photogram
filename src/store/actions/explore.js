@@ -37,7 +37,6 @@ export const loadExplorePosts = (token,page) => {
             dispatch(explorePostsLoadingSuccess(results, previous,page, next));
         })
         .catch((error) =>{
-            console.log(error);
             dispatch(explorePostsLoadingFail(error));
         });
     }

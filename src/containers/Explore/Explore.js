@@ -64,9 +64,9 @@ class Explore extends React.Component {
         return (
             <div className='col s12'>
                 {displayPosts}
-                <ul class="pagination">
+                <ul className="pagination">
                         {previous}
-                        <li class="page-item active">
+                        <li className="page-item active">
                             <a href="#!" className='page-link'>{!loading? this.props.currentPage:''}</a></li>
                         {nextPosts}
                 </ul>

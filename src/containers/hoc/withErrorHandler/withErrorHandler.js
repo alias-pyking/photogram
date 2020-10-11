@@ -1,11 +1,15 @@
 import React, { Component } from "react";
 import Modal from '../../../components/UI/Modal/Modal';
 import Aux from "../Auxiliary";
+import {ToastContainer, toast} from 'react-toastify'
+
 const withErrorHandler = (WrappedComponent, axios) => {
 	return class extends Component {
+
 		state = {
 			error: null
 		};
+		
 		componentWillMount() {
 			this.reqInterceptor = axios.interceptors.request.use(req => {
 				this.setState({ error: null });
@@ -21,10 +25,12 @@ const withErrorHandler = (WrappedComponent, axios) => {
 		componentWillUnmount() {
             axios.interceptors.request.eject(this.reqInterceptor);
             axios.interceptors.response.eject(this.resInterceptor);
-        }
+		}
+		
 		errorConfirmedHandler = () => {
 			this.setState({ error: null });
 		};
+
 		render() {
 			return (
 				<Aux>

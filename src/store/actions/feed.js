@@ -36,7 +36,6 @@ export const loadFeed = (token, page) => {
             dispatch(feedLoadingSuccess(results,previous,page, next));
         })
         .catch((error) =>{
-            console.log(error);
             dispatch(feedLoadingFailed(error));
         });
         
